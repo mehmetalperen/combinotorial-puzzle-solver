@@ -1,6 +1,14 @@
 import "./App.css";
+import { useEffect, useState } from "react";
+import Solution from "./componenets/Solution";
 
 function App() {
+  const [s1, setS1] = useState("");
+  const [s2, setS2] = useState("");
+  const [s3, setS3] = useState("");
+  const [isSolutionFound, setIsSolutionFound] = useState(true);
+  const [mathOperation, setMathOperation] = useState("+");
+
   return (
     <div className="App">
       <div className="pt-5 pb-2 mb-5 text-center">
@@ -30,19 +38,19 @@ function App() {
               </p>
             </div>
           </div>
+
           <div className="col-lg-6 col-md-12 border-left">
             <div className="">
               <h4 className="mt-3">Try it!</h4>
 
               <div className="input-style input-group pt-1 pb-1 pl-2 pr-2">
-                {/* <div className="row"></div> */}
                 <input
                   placeholder="1st combination"
                   type="text"
-                  className="input-style form-control"
+                  className="input-style form-control mt-1 mb-1"
                   aria-label="Text input with dropdown button"
                 />
-                <div className="input-style input-group-append">
+                <div className="input-style input-group-append mt-1 mb-1">
                   <button
                     className="btn btn-secondary dropdown-toggle"
                     type="button"
@@ -71,11 +79,11 @@ function App() {
                 <input
                   placeholder="2nd combination"
                   type="text"
-                  className="input-style form-control"
+                  className="input-style form-control mt-1 mb-1"
                   aria-label="Text input with dropdown button"
                 />
 
-                <div className="input-group-append">
+                <div className="input-group-append mt-1 mb-1">
                   <button className="btn btn-secondary disabled" type="button">
                     =
                   </button>
@@ -84,11 +92,43 @@ function App() {
                 <input
                   placeholder="3rd combination"
                   type="text"
-                  className="input-style form-control"
+                  className="input-style form-control mt-1 mb-1"
                   aria-label="Text input with dropdown button"
                 />
               </div>
             </div>
+            <div className="col-12 m-3 d-flex justify-content-center">
+              <button className="btn btn-outline-secondary" type="submit">
+                <img src="../iconcalculator-icon.svg" alt="" />
+              </button>
+            </div>
+
+            {isSolutionFound ? (
+              <div className="col-12">
+                <h5 className="mt-3">## Solutions Found:</h5>
+                <div className="d-flex flex-wrap justify-content-between">
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                  <Solution />
+                </div>
+              </div>
+            ) : (
+              <div className="col-12">
+                <h5 className="mt-3">No Solution Found</h5>
+              </div>
+            )}
           </div>
         </div>
       </div>
