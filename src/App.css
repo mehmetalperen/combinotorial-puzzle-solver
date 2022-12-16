@@ -1,6 +1,7 @@
 * {
   font-family: "Karla", sans-serif;
   /* border-radius: 10px; */
+  box-sizing: border-box;
 }
 body {
   margin: 0;
@@ -8,7 +9,21 @@ body {
 }
 
 div {
-  border-style: solid;
+  /* border-style: solid;
   border-color: red;
-  border-width: 1px;
+  border-width: 1px; */
+  box-sizing: border-box;
+}
+.container-fluid {
+  /* border-style: solid;
+  border-color: blue;
+  border-width: 2px; */
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+.disabled {
+  pointer-events: none;
+}
+.input-style {
+  min-width: 150px;
 }
