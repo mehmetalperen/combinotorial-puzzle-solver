@@ -1,14 +1,22 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import Solution from "./componenets/Solution";
+import { puzzleSolver } from "./PuzzleSolver";
 
 function App() {
   const [s1, setS1] = useState("");
   const [s2, setS2] = useState("");
   const [s3, setS3] = useState("");
   const [isSolutionFound, setIsSolutionFound] = useState(true);
-  const [mathOperation, setMathOperation] = useState("+");
+  const [mathOperation, setMathOperation] = useState("");
 
+  const reset = () => {
+    setS1("");
+    setS2("");
+    setS3("");
+    setIsSolutionFound(false);
+    setMathOperation("");
+  };
   return (
     <div className="App">
       <div className="pt-5 pb-2 mb-5 text-center">
@@ -49,6 +57,10 @@ function App() {
                   type="text"
                   className="input-style form-control mt-1 mb-1"
                   aria-label="Text input with dropdown button"
+                  onChange={(e) => {
+                    setS1(e.target.value.toUpperCase());
+                  }}
+                  value={s1}
                 />
                 <div className="input-style input-group-append mt-1 mb-1">
                   <button
@@ -58,21 +70,42 @@ function App() {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Math Operation
+                    Math Operation: {mathOperation}
                   </button>
+
                   <div className="dropdown-menu">
-                    <a className="dropdown-item" href="#">
+                    <option
+                      className={`dropdown-item ${
+                        mathOperation === "+" ? "active" : ""
+                      }`}
+                      onClick={() => setMathOperation("+")}
+                    >
                       Addition(+)
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Subtraction(-)
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Division(/)
-                    </a>
-                    <a className="dropdown-item" href="#">
+                    </option>
+                    <option
+                      className={`dropdown-item ${
+                        mathOperation === "-" ? "active" : ""
+                      }`}
+                      onClick={() => setMathOperation("-")}
+                    >
+                      subtraction(-)
+                    </option>
+                    <option
+                      className={`dropdown-item ${
+                        mathOperation === "*" ? "active" : ""
+                      }`}
+                      onClick={() => setMathOperation("*")}
+                    >
                       Multiplication(*)
-                    </a>
+                    </option>
+                    <option
+                      className={`dropdown-item ${
+                        mathOperation === "/" ? "active" : ""
+                      }`}
+                      onClick={() => setMathOperation("/")}
+                    >
+                      Division(/)
+                    </option>
                   </div>
                 </div>
 
@@ -81,6 +114,10 @@ function App() {
                   type="text"
                   className="input-style form-control mt-1 mb-1"
                   aria-label="Text input with dropdown button"
+                  onChange={(e) => {
+                    setS2(e.target.value.toUpperCase());
+                  }}
+                  value={s2}
                 />
 
                 <div className="input-group-append mt-1 mb-1">
@@ -94,12 +131,38 @@ function App() {
                   type="text"
                   className="input-style form-control mt-1 mb-1"
                   aria-label="Text input with dropdown button"
+                  onChange={(e) => {
+                    setS3(e.target.value.toUpperCase());
+                  }}
+                  value={s3}
                 />
               </div>
             </div>
-            <div className="col-12 m-3 d-flex justify-content-center">
-              <button className="btn btn-outline-secondary" type="submit">
-                <img src="../iconcalculator-icon.svg" alt="" />
+            <div className="col-12 mb-5 mt-3 d-flex justify-content-center">
+              <button
+                className="btn btn-outline-secondary"
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (mathOperation === "") {
+                    alert("Must select a math operation");
+                  } else if (s1 === "") {
+                    alert("Missing an input for the first combination");
+                  } else if (s2 === "") {
+                    alert("Missing an input for the second combination");
+                  } else if (s3 === "") {
+                    alert("Missing an input for the third combination");
+                  } else {
+                    puzzleSolver(s1, s2, s3, mathOperation);
+                    reset();
+                  }
+                }}
+              >
+                <img
+                  src="../iconcalculator-icon.svg"
+                  className="mr-5 ml-5"
+                  alt=""
+                />
               </button>
             </div>
 
