@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import Solution from "./componenets/Solution";
 import { puzzleSolver } from "./PuzzleSolver";
 
+/*
+TODOS:
+loading animation when algoritm runs
+*/
+
 function App() {
   const [s1, setS1] = useState("");
   const [s2, setS2] = useState("");
@@ -148,7 +153,7 @@ function App() {
             </div>
             <div className="col-12 mb-5 mt-3 d-flex justify-content-center">
               <button
-                className="btn btn-outline-secondary"
+                className="mr-3 ml-3 btn btn-outline-secondary"
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault();
@@ -162,8 +167,6 @@ function App() {
                     alert("Missing an input for the third combination");
                   } else {
                     setPuzzleSolution(puzzleSolver(s1, s2, s3, mathOperation));
-
-                    // reset();
                   }
                 }}
               >
@@ -172,6 +175,16 @@ function App() {
                   className="mr-5 ml-5"
                   alt=""
                 />
+              </button>
+              <button
+                className="mr-3 ml-3 btn btn-outline-secondary"
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  reset();
+                }}
+              >
+                <img src="../trash-2.svg" className="mr-5 ml-5" alt="" />
               </button>
             </div>
 
