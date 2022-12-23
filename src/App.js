@@ -66,6 +66,39 @@ function App() {
                 then it checks the validity of the map of permutations.
               </p>
             </div>
+
+            <div id="contact-section-id" className="contact">
+              <div className="section-divider" />
+
+              <div className="contact-wrapper">
+                <a
+                  href="mailto:mnadi@uci.edu"
+                  className="contact-href"
+                  data-splitbee-event="Button Click"
+                  data-splitbee-event-planType="email btn"
+                >
+                  <img src="email 1.svg" alt="" className="contact-icon" />
+                </a>
+                <a
+                  data-splitbee-event="Button Click"
+                  data-splitbee-event-planType="linkedin btn"
+                  href="https://www.linkedin.com/in/mehmet-nadi-03372a1b1/"
+                  target="_blank"
+                  className="contact-href"
+                >
+                  <img src="linkedin 1.svg" alt="" className="contact-icon" />
+                </a>
+                <a
+                  data-splitbee-event="Button Click"
+                  data-splitbee-event-planType="github btn"
+                  href="https://github.com/mehmetalperen"
+                  target="_blank"
+                  className="contact-href"
+                >
+                  <img src="github.svg" alt="" className="contact-icon" />
+                </a>
+              </div>
+            </div>
           </div>
 
           <div className="col-lg-6 col-md-12 border-left">
