@@ -49,20 +49,21 @@ function App() {
               <h4 className="mt-3">What is it?</h4>
               <p>
                 This program solves combinatorial puzzles for summation,
-                division, subtraction, and multiplication. <br /> <br /> In a
-                summation puzzles, you are given three strings in the the form
-                of POT + PAN = BIB; this can also be in division, subtraction,
-                and multiplication. Each letter in the inputs represent a number
-                from 0 to 9. The goal is to find out whether it is possible to
-                assign a distinct digit to each letter in the equation that
-                would make the input equation true. For example, if the puzzle
-                is POT + PAN = BIB, the mapping P:4, O:8, T:7, A:5, N:2, B:9,
-                I:3 will solve this, as 487 + 452 = 939. <br /> <br /> There are
-                often multiple solutions to a given summation puzzle and this
-                program will list out all the possible solutions for the given
-                input. The Combinatorial Puzzle Solver uses recursion to find
-                permutations of letter-digit pairings, then it checks the
-                validity of the map of permutations.
+                division, subtraction, and multiplication. <br /> <br /> In
+                combination puzzles, you are given three strings in the form of
+                SEND + MORE = MONEY; this can also be in division, subtraction,
+                and multiplication. Each letter in the inputs represents a
+                number from 0 to 9. The goal is to find out whether it is
+                possible to assign a distinct digit to each letter in the
+                equation that would make the input equation true. For example,
+                if the puzzle is SEND + MORE = MONEY, the mapping S:2, E:8, N:1,
+                D:7, M:0, O:3, R: 6, Y:5 will solve this, as 2817 + 0368 =
+                03185.
+                <br /> <br /> There are often multiple solutions to a given
+                summation puzzle and this program will list out all the possible
+                solutions for the given input. The Combinatorial Puzzle Solver
+                uses recursion to find permutations of letter-digit pairings,
+                then it checks the validity of the map of permutations.
               </p>
             </div>
           </div>
