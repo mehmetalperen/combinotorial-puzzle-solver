@@ -7,7 +7,8 @@ function App() {
   const [s1, setS1] = useState("");
   const [s2, setS2] = useState("");
   const [s3, setS3] = useState("");
-  const [isSolutionFound, setIsSolutionFound] = useState(true);
+  const [puzzleSolution, setPuzzleSolution] = useState([]);
+  const [isSolutionFound, setIsSolutionFound] = useState(false);
   const [mathOperation, setMathOperation] = useState("");
 
   const reset = () => {
@@ -17,6 +18,13 @@ function App() {
     setIsSolutionFound(false);
     setMathOperation("");
   };
+
+  useEffect(() => {
+    puzzleSolution.length > 0
+      ? setIsSolutionFound(true)
+      : setIsSolutionFound(false);
+  }, [puzzleSolution]);
+
   return (
     <div className="App">
       <div className="pt-5 pb-2 mb-5 text-center">
@@ -153,8 +161,9 @@ function App() {
                   } else if (s3 === "") {
                     alert("Missing an input for the third combination");
                   } else {
-                    puzzleSolver(s1, s2, s3, mathOperation);
-                    reset();
+                    setPuzzleSolution(puzzleSolver(s1, s2, s3, mathOperation));
+
+                    // reset();
                   }
                 }}
               >
@@ -168,23 +177,14 @@ function App() {
 
             {isSolutionFound ? (
               <div className="col-12">
-                <h5 className="mt-3">## Solutions Found:</h5>
+                <h5 className="mt-3">
+                  {puzzleSolution.length} Solution
+                  {puzzleSolution.length <= 1 ? "" : "s"} Found:
+                </h5>
                 <div className="d-flex flex-wrap justify-content-between">
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
-                  <Solution />
+                  {puzzleSolution.map((solution, index) => {
+                    return <Solution numbers={solution} key={index + 1} />;
+                  })}
                 </div>
               </div>
             ) : (
