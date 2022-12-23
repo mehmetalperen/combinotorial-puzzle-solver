@@ -17,6 +17,7 @@ function App() {
   const [mathOperation, setMathOperation] = useState("");
   const [alertMsg, setAlertMsg] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [loadingSolution, setLoadingSolution] = useState(false);
 
   const reset = () => {
     setS1("");
@@ -197,7 +198,13 @@ function App() {
                   } else {
                     setAlertMsg("");
                     setShowAlert(false);
-                    setPuzzleSolution(puzzleSolver(s1, s2, s3, mathOperation));
+                    setLoadingSolution(true);
+                    setTimeout(() => {
+                      setPuzzleSolution(
+                        puzzleSolver(s1, s2, s3, mathOperation)
+                      );
+                      setLoadingSolution(false);
+                    }, 1000);
                   }
                 }}
               >
@@ -235,6 +242,15 @@ function App() {
               <div className="col-12">
                 <h5 className="mt-3">No Solution Found</h5>
               </div>
+            )}
+            {loadingSolution ? (
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <div />
             )}
           </div>
         </div>
