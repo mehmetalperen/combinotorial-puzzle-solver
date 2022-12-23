@@ -15,6 +15,8 @@ function App() {
   const [puzzleSolution, setPuzzleSolution] = useState([]);
   const [isSolutionFound, setIsSolutionFound] = useState(false);
   const [mathOperation, setMathOperation] = useState("");
+  const [alertMsg, setAlertMsg] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const reset = () => {
     setS1("");
@@ -22,6 +24,10 @@ function App() {
     setS3("");
     setIsSolutionFound(false);
     setMathOperation("");
+    setPuzzleSolution([]);
+    setIsSolutionFound(false);
+    setAlertMsg("");
+    setShowAlert(false);
   };
 
   useEffect(() => {
@@ -63,6 +69,25 @@ function App() {
           <div className="col-lg-6 col-md-12 border-left">
             <div className="">
               <h4 className="mt-3">Try it!</h4>
+              {showAlert ? (
+                <div class="alert alert-danger" role="alert">
+                  {alertMsg}
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowAlert(false);
+                    }}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              ) : (
+                <div />
+              )}
 
               <div className="input-style input-group pt-1 pb-1 pl-2 pr-2">
                 <input
@@ -157,15 +182,21 @@ function App() {
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault();
-                  if (mathOperation === "") {
-                    alert("Must select a math operation");
-                  } else if (s1 === "") {
-                    alert("Missing an input for the first combination");
+                  if (s1 === "") {
+                    setAlertMsg("Missing an input for the first combination");
+                    setShowAlert(true);
+                  } else if (mathOperation === "") {
+                    setAlertMsg("Must select a math operation");
+                    setShowAlert(true);
                   } else if (s2 === "") {
-                    alert("Missing an input for the second combination");
+                    setAlertMsg("Missing an input for the second combination");
+                    setShowAlert(true);
                   } else if (s3 === "") {
-                    alert("Missing an input for the third combination");
+                    setAlertMsg("Missing an input for the third combination");
+                    setShowAlert(true);
                   } else {
+                    setAlertMsg("");
+                    setShowAlert(false);
                     setPuzzleSolution(puzzleSolver(s1, s2, s3, mathOperation));
                   }
                 }}
