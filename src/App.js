@@ -97,7 +97,7 @@ function App() {
                   className="input-style form-control mt-1 mb-1"
                   aria-label="Text input with dropdown button"
                   onChange={(e) => {
-                    setS1(e.target.value.toUpperCase());
+                    setS1(e.target.value.toUpperCase().replace(/\s/g, ""));
                   }}
                   value={s1}
                 />
@@ -154,7 +154,7 @@ function App() {
                   className="input-style form-control mt-1 mb-1"
                   aria-label="Text input with dropdown button"
                   onChange={(e) => {
-                    setS2(e.target.value.toUpperCase());
+                    setS2(e.target.value.toUpperCase().replace(/\s/g, ""));
                   }}
                   value={s2}
                 />
@@ -171,7 +171,7 @@ function App() {
                   className="input-style form-control mt-1 mb-1"
                   aria-label="Text input with dropdown button"
                   onChange={(e) => {
-                    setS3(e.target.value.toUpperCase());
+                    setS3(e.target.value.toUpperCase().replace(/\s/g, ""));
                   }}
                   value={s3}
                 />
@@ -244,9 +244,9 @@ function App() {
               </div>
             )}
             {loadingSolution ? (
-              <div class="d-flex justify-content-center">
-                <div class="spinner-border" role="status">
-                  <span class="sr-only">Loading...</span>
+              <div className="d-flex justify-content-center">
+                <div className="spinner-border" role="status">
+                  <span className="sr-only">Loading...</span>
                 </div>
               </div>
             ) : (
