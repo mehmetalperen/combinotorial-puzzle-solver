@@ -15,6 +15,7 @@ function App() {
   const [puzzleSolution, setPuzzleSolution] = useState([]);
   const [isSolutionFound, setIsSolutionFound] = useState(false);
   const [mathOperation, setMathOperation] = useState("");
+  const [tempMathOperation, setTempMathOperation] = useState("");
   const [alertMsg, setAlertMsg] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [loadingSolution, setLoadingSolution] = useState(false);
@@ -25,6 +26,7 @@ function App() {
     setS3("");
     setIsSolutionFound(false);
     setMathOperation("");
+    setTempMathOperation("");
     setPuzzleSolution([]);
     setIsSolutionFound(false);
     setAlertMsg("");
@@ -143,39 +145,39 @@ function App() {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Math Operation: {mathOperation}
+                    Math Operation: {tempMathOperation}
                   </button>
 
                   <div className="dropdown-menu">
                     <option
                       className={`dropdown-item ${
-                        mathOperation === "+" ? "active" : ""
+                        tempMathOperation === "+" ? "active" : ""
                       }`}
-                      onClick={() => setMathOperation("+")}
+                      onClick={() => setTempMathOperation("+")}
                     >
                       Addition(+)
                     </option>
                     <option
                       className={`dropdown-item ${
-                        mathOperation === "-" ? "active" : ""
+                        tempMathOperation === "-" ? "active" : ""
                       }`}
-                      onClick={() => setMathOperation("-")}
+                      onClick={() => setTempMathOperation("-")}
                     >
                       subtraction(-)
                     </option>
                     <option
                       className={`dropdown-item ${
-                        mathOperation === "*" ? "active" : ""
+                        tempMathOperation === "*" ? "active" : ""
                       }`}
-                      onClick={() => setMathOperation("*")}
+                      onClick={() => setTempMathOperation("*")}
                     >
                       Multiplication(*)
                     </option>
                     <option
                       className={`dropdown-item ${
-                        mathOperation === "/" ? "active" : ""
+                        tempMathOperation === "/" ? "active" : ""
                       }`}
-                      onClick={() => setMathOperation("/")}
+                      onClick={() => setTempMathOperation("/")}
                     >
                       Division(/)
                     </option>
@@ -220,7 +222,7 @@ function App() {
                   if (s1 === "") {
                     setAlertMsg("Missing an input for the first combination");
                     setShowAlert(true);
-                  } else if (mathOperation === "") {
+                  } else if (tempMathOperation === "") {
                     setAlertMsg("Must select a math operation");
                     setShowAlert(true);
                   } else if (s2 === "") {
@@ -235,8 +237,10 @@ function App() {
                     setLoadingSolution(true);
                     setTimeout(() => {
                       setPuzzleSolution(
-                        puzzleSolver(s1, s2, s3, mathOperation)
+                        puzzleSolver(s1, s2, s3, tempMathOperation)
                       );
+                      setMathOperation(tempMathOperation);
+
                       setLoadingSolution(false);
                     }, 1000);
                   }
@@ -268,7 +272,13 @@ function App() {
                 </h5>
                 <div className="d-flex flex-wrap justify-content-between">
                   {puzzleSolution.map((solution, index) => {
-                    return <Solution numbers={solution} key={index + 1} />;
+                    return (
+                      <Solution
+                        numbers={solution}
+                        mathOperation={mathOperation}
+                        key={index + 1}
+                      />
+                    );
                   })}
                 </div>
               </div>
